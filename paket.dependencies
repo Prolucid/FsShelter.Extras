@@ -1,0 +1,35 @@
+redirects: on
+framework: >=net46
+
+group Main
+    source https://www.nuget.org/api/v2
+
+    nuget FSharp.Core redirects: force
+    nuget FsShelter
+    nuget FsBunny
+    nuget FsCassy
+    nuget RabbitMQ.Client
+    nuget google.protobuf
+    nuget FsPickler
+    nuget Newtonsoft.Json
+    nuget Fable.JsonConverter
+
+
+group Tests
+    source https://nuget.org/api/v2
+
+    nuget Nunit 2.6.4
+    nuget Nunit.Runners 2.6.4
+    nuget Unquote
+
+
+group Build
+framework: NET46
+    source https://nuget.org/api/v2
+    nuget FSharp.Core ~> 4 redirects: force
+    nuget Argu
+    nuget SourceLink.Fake
+    nuget FAKE
+    nuget FSharp.Formatting
+
+    github fsharp/FAKE modules/Octokit/Octokit.fsx
