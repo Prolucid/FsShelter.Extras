@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>FsShelter.Extras
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Common component constructors for FsShelter"/>
+    <meta name="author" content="Prolucid"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="https://prolucid.github.io/FsShelter.Extras/content/style.css" />
+    <script type="text/javascript" src="https://prolucid.github.io/FsShelter.Extras/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="https://prolucid.github.io">prolucid</a></li>
+          <li><a href="https://prolucid.github.io/FsShelter">FsShelter</a></li>
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/Prolucid/FsShelter.Extras">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="https://prolucid.github.io/FsShelter.Extras/index.html">FsShelter.Extras</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h1><a name="FsShelter-Extras" class="anchor" href="#FsShelter-Extras">FsShelter.Extras</a></h1>
+<p>The opinionated library of common components for building event-processing topologies with <a href="https://prolucid.github.io/FsShelter">FsShelter</a> and <a href="https://prolucid.github.io/FsBunny">FsBunny</a>.
+Together with Apache Storm, RabbitMQ and Cassandra these components provide fault-tolerant and highly scalable platform for programming distributed systems with F#.</p>
+<h1><a name="Installing" class="anchor" href="#Installing">Installing</a></h1>
+<div class="row">
+  <div class="span1"></div>
+  <div class="span6">
+    <div class="well well-small" id="nuget">
+      The FsShelter.Extras library can be <a href="https://nuget.org/packages/FsShelter.Extras">installed from NuGet</a>:
+      <pre>paket add nuget FsShelter.Extras</pre>
+    </div>
+  </div>
+  <div class="span1"></div>
+</div>
+<h2><a name="Motivation-and-capabilities" class="anchor" href="#Motivation-and-capabilities">Motivation and capabilities</a></h2>
+<p>The library is for developers who want to use F# to write applications that can scale linearly and have predictable uptime and performance characteristics, while running under minimal supervision.
+When we say "scale" what we really we mean:</p>
+<ul>
+<li>the system as a whole is at least partially available,</li>
+<li>performs the required function,</li>
+<li>has the predictable timeframe for handling the incoming messages,</li>
+<li>can handle larger load if needed given more resources.</li>
+</ul>
+<h4><a name="Apache-Storm" class="anchor" href="#Apache-Storm">Apache Storm</a></h4>
+<p>Think of Apache Storm as distributed operating system designed for running programs that continiously process discreet events using a cluster of cheap machines.
+The core value of Apache Storm comes from the granular processing guarantees that are provided without touching the storage, therefore avoiding very high latency that usually comes with it.
+Storm will take care of distributing the program throughout the cluster, will monitor its performance and will redistribute the load if required.</p>
+<h4><a name="Apache-Cassandra" class="anchor" href="#Apache-Cassandra">Apache Cassandra</a></h4>
+<p>The persistence components implemented here don't have a dependency on <a href="https://prolucid.github.io/FsCassy">FsCassy</a> and can be used with any database technology, but use of Cassandra is highly complementary.
+It features statically-typed API with consistently low latency in combination with tunable guarantees required for always-on systems.
+At the same time, "materialized views" Cassandra encourages are easily maintained with FsShelter components.</p>
+<h4><a name="RabbitMQ" class="anchor" href="#RabbitMQ">RabbitMQ</a></h4>
+<p>RabbitMQ is a swiss knife of distributed messaging:</p>
+<ul>
+<li>it talks in variety of protocols right out of the box,</li>
+<li>it enables variety of messaging patterns,</li>
+<li>it runs on top of time-tested Erlang runtime,</li>
+<li>and it supports clustering, mirroring and failover,</li>
+<li>it runs on a laptop, an in-house datacenter or any cloud vendor your customers might prefer.</li>
+</ul>
+<p><a href="https://prolucid.github.io/FsBunny">FsBunny</a> implements the publisher and consumer API we use for our messaging components.</p>
+<h2><a name="Contributing-and-copyright" class="anchor" href="#Contributing-and-copyright">Contributing and copyright</a></h2>
+<p>The project is hosted on <a href="https://github.com/Prolucid/FsShelter.Extras">GitHub</a> where you can <a href="https://github.com/Prolucid/FsShelter.Extras/issues">report issues</a>, fork
+the project and submit pull requests.</p>
+<p>The library is available under Apache license, which allows modification and
+redistribution for both commercial and non-commercial purposes. For more information see the
+<a href="https://github.com/Prolucid/FsShelter.Extras/blob/master/LICENSE.md">License file</a> in the GitHub repository.</p>
+<p>Copyright 2017 Prolucid Technologies Inc</p>
+
+
+        </div>
+        <div class="span3">
+          <img src="https://prolucid.github.io/FsShelter.Extras/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FsShelter.Extras</li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FsShelter.Extras">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/Prolucid/FsShelter.Extras">Source Code on GitHub</a></li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/license.html">License</a></li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/overview.html">Overview</a></li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/bootstrap.html">Bootstrapping the dependencies</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

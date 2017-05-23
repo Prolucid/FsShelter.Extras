@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Namespaces
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Common component constructors for FsShelter"/>
+    <meta name="author" content="Prolucid"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="https://prolucid.github.io/FsShelter.Extras/content/style.css" />
+    <script type="text/javascript" src="https://prolucid.github.io/FsShelter.Extras/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="https://prolucid.github.io">prolucid</a></li>
+          <li><a href="https://prolucid.github.io/FsShelter">FsShelter</a></li>
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/Prolucid/FsShelter.Extras">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="https://prolucid.github.io/FsShelter.Extras/index.html">FsShelter.Extras</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h1><a name="Namespaces" class="anchor" href="#Namespaces">Namespaces</a></h1>
+<p>FsShelter.Extras is organized into 3 parts designed to work together:</p>
+<ul>
+<li>Assembers - modules for packing and unpacking EventStream messages</li>
+<li>Components - functions for creating the most common topology components</li>
+<li>Deployment API - helps with packaging of the topology for deployment</li>
+</ul>
+<h1><a name="Assemblers" class="anchor" href="#Assemblers">Assemblers</a></h1>
+<p>FsShelter.Extras comes with several FsBunny assemblers to pack and unpack messages:</p>
+<ul>
+<li>Google Protobuf (v3)</li>
+<li>FsPickler</li>
+<li>JSON with Fable converter</li>
+</ul>
+<p>And they are all availabe as extension methods on the EventStreams API.</p>
+<h1><a name="FsShelter-components" class="anchor" href="#FsShelter-components">FsShelter components</a></h1>
+<p>Fundamentally FsShelter components are just mapping functions, taking something as input and potentially producing some output.
+These are the common types of components we have identified and implemented in the library in a fairly general form:</p>
+<ul>
+<li>
+<p><strong>Messaging spouts</strong> <br />
+Create and subscribe queues, convert messages into topology streams and handle processing guarantees.</p>
+</li>
+<li>
+<p><strong>Messaging bolts</strong> <br />
+Convert topology streams into messages and send them to destination exchanges.</p>
+</li>
+<li>
+<p><strong>Persistence bolts</strong> <br />
+Convert incoming tuples into persistence instructions.</p>
+</li>
+<li>
+<p><strong>Transformation bolts</strong> <br />
+Read something from the input, do something and potentially produce some output. Most bolts are transformation bolts.</p>
+</li>
+<li>
+<p><strong>Aggregation bolts</strong> <br />
+These are transformation bolts that may emit at any time, they typically perform some sort of aggregation over inputs before emitting.</p>
+</li>
+<li>
+<p><strong>Joiner bolts</strong> <br />
+Joiner is an aggregation bolt that is specifically tailored for joining multiple streams on some kind of key.</p>
+</li>
+</ul>
+<p>Additionally, one common type of a joiner bolt has been identified as Signal joiner. The term Signal is used in a sense than a certain event has happened.
+It can be useful in construction of logic Gates - bolts that ensure multiple conditions have been met before the processing can continue.</p>
+<p>One thing to keep in mind about any delayed emits (i.e. aggregation and joiner bolts) is the topology-wide timeout: the maximum time a tuple emitted at the spout can spend unacknowledged while being processed in the topology.
+Decide carefully if delayed emits need to fit into the processing guarantees or have to be unachored.</p>
+<p>It's up to the user to parametrize these components with how specifically these actions are performed or if a particular component is suitable at all.
+For details see the API reference.</p>
+<h1><a name="Deployment-module" class="anchor" href="#Deployment-module">Deployment module</a></h1>
+<p>Deployment module helps with packaging of common .NET build artifacts and execution of the application as a Storm topology.</p>
+
+<div class="tip" id="fs1">namespace System</div>
+<div class="tip" id="fs2">namespace System.Collections</div>
+<div class="tip" id="fs3">namespace System.Collections.Generic</div>
+
+        </div>
+        <div class="span3">
+          <img src="https://prolucid.github.io/FsShelter.Extras/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FsShelter.Extras</li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FsShelter.Extras">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/Prolucid/FsShelter.Extras">Source Code on GitHub</a></li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/license.html">License</a></li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/overview.html">Overview</a></li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/bootstrap.html">Bootstrapping the dependencies</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="https://prolucid.github.io/FsShelter.Extras/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
