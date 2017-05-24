@@ -37,7 +37,7 @@
           
 <h1><a name="Bootstrapping-the-components" class="anchor" href="#Bootstrapping-the-components">Bootstrapping the components</a></h1>
 <p>The component constructors are defined in a way that delays instantiation (and consequently environmental requirements) till the moment it's actually needed.
-What it means is that when implemented correctly, configuration, runtime dependencies, database availability, etc are not demanded when we are just inspecting the topology, for example to document it or submit it for execution.
+What it means is that when implemented correctly, configuration, runtime dependencies, database availability, etc are not demanded when we are just inspecting the topology. For example: to document the topology or submit it for execution.
 Only when Storm brings it up for execution do we need to have everything in place and available, hence the bootstrap parametrization.</p>
 <h1><a name="Exmaple" class="anchor" href="#Exmaple">Exmaple</a></h1>
 <h3><a name="Messaging" class="anchor" href="#Messaging">Messaging</a></h3>
@@ -159,8 +159,8 @@ Only when Storm brings it up for execution do we need to have everything in plac
 </tr>
 </table>
 <h3><a name="Implementing-component-logic" class="anchor" href="#Implementing-component-logic">Implementing component logic</a></h3>
-<p>FsShelter provides the runtime, the Extras components outline the role of the component and the bootstrap parameters wire the configured providers, but the user provides the logic.
-Let's implement some of the components. We'll model some sensors, take the readings as messages coming in and rise an alarm by sending a message if the temperature readings exceed threshold.</p>
+<p>FsShelter provides the runtime, the Extras components outline the role of the component, and the bootstrap parameters wire the configured providers, but the user provides the logic.
+Let's implement some of the components. We'll model some sensors, take the readings as messages coming in and raise an alarm by sending a message if the temperature readings exceed a threshold.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
