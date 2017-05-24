@@ -2,6 +2,8 @@
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
 #I "../../build_output"
+#I "../../packages/FsCassy/lib/net45"
+#I "../../packages/CassandraCSharpDriver/lib/net45"
 #r "FsShelter.dll"
 #r "FsShelter.Extras.dll"
 #r "RabbitMq.Client.dll"
@@ -27,6 +29,7 @@ Let's boostrap EventStreams consumers and publishers with Json assembly:
 open FsBunny
 open FsShelter.Extras.Assemblers
 
+/// DAL helpers
 module RabbitMq =
     open System
     open RabbitMQ.Client
@@ -56,6 +59,7 @@ let publishJson exchange (eventStreams:EventStreams) (topic,msg) =
 Now let's bootstrap some Cassandra reader and writer components:
 
 *)
+// DAL helpers
 module Cassandra =
   open FsCassy
   open Cassandra.Mapping
@@ -94,6 +98,7 @@ Let's implement some of the components. We'll model some sensors, take the readi
 open System
 open FsCassy
 
+/// Events and Notifications
 [<AutoOpen>]
 module Messaging =
   type SensorReading = 
@@ -102,11 +107,13 @@ module Messaging =
   type SensorAlert = 
     { Id : Guid; Text : string }
 
+/// Cassandra-mapped types
 [<AutoOpen>]
 module Persistence =
   type Sensor = 
     { Id : Guid; Value : int}
 
+/// Topology streams
 type Stream =
     | Update of sensorId:Guid * temp:int
     | Alarm of sensorId:Guid * temp:int
@@ -153,7 +160,9 @@ let sampleTopology = topology "sample" {
         |> runBolt withReaderArgs 
 
     let alertNotifier = 
-        createNotifierBolt (function Alarm (sensorId,temp) -> "Topics.Alarm", {SensorAlert.Id = sensorId; Text = sprintf "At %A the reactor went critical" DateTime.Now})
+        createNotifierBolt (function Alarm (sensorId,temp) -> "Topics.Alarm", 
+                                                              { SensorAlert.Id = sensorId
+                                                                Text = sprintf "At %A the reactor went critical" DateTime.Now})
         |> runBolt (withPublisher <| publishJson "amq.topic")
 
     yield sensorEvents ==> sensorWriter |> shuffle.on Update

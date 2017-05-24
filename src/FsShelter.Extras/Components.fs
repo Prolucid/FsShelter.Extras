@@ -127,7 +127,7 @@ type Signal =
 
 open FSharp.Reflection
 
-/// join aggregator for signals
+/// Join aggregator for signals
 let signalAggregator<'t> (signals:bigint list) =
     let reader = FSharpValue.PreComputeUnionTagReader typeof<'t>
     fun (input:'t) -> 

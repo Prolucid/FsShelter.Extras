@@ -54,7 +54,7 @@ Additionally, one common type of a joiner bolt that has been identified is the S
 It can be useful in construction of logic Gates - bolts that ensure multiple conditions have been met before the processing can continue.
 
 One thing to keep in mind about any delayed emits (i.e. aggregation and joiner bolts) is the topology-wide timeout: the maximum time a tuple emitted at the spout can spend unacknowledged while being processed in the topology.
-Decide carefully if delayed emits need to fit into the processing guarantees or have to be set as unachored.
+Decide carefully if delayed emits need to fit into the processing guarantees or have to be unachored.
 
 It's up to the user to parametrize these components with how specifically these actions are performed or if a particular component is suitable at all.
 For details see the API reference.
