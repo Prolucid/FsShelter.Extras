@@ -14,7 +14,7 @@ Bootstrapping the components
 ========================
 
 The component constructors are defined in a way that delays instantiation (and consequently environmental requirements) till the moment it's actually needed.
-What it means is that whem implemented correctly, configuration, runtime dependencies, database availability, etc are not demanded when we are just inspecting the topology, for example to document it or submit it for execution.
+What it means is that when implemented correctly, configuration, runtime dependencies, database availability, etc are not demanded when we are just inspecting the topology. For example: to document the topology or submit it for execution.
 Only when Storm brings it up for execution do we need to have everything in place and available, hence the bootstrap parametrization.
 
 Exmaple
@@ -87,9 +87,8 @@ let withReaderArgs log cfg =
 (**
 ### Implementing component logic
 
-FsShelter provides the runtime, the Extras components outline the role of the component and the bootstrap parameters wire the configured providers, but the user provides the logic.
-Let's implement some of the components. We'll model some sensors, take the readings as messages coming in and rise an alarm by sending a message if the temperature readings exceed threshold.
-
+FsShelter provides the runtime, the Extras components outline the role of the component, and the bootstrap parameters wire the configured providers, but the user provides the logic.
+Let's implement some of the components. We'll model some sensors, take the readings as messages coming in and raise an alarm by sending a message if the temperature readings exceed a threshold.
 *)
 
 open System

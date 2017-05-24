@@ -7,7 +7,7 @@
 FsShelter.Extras
 ======================
 The opinionated library of common components for building event-processing topologies with [FsShelter](https://prolucid.github.io/FsShelter) and [FsBunny](https://prolucid.github.io/FsBunny).
-Together with Apache Storm, RabbitMQ and Cassandra these components provide fault-tolerant and highly scalable platform for programming distributed systems with F#.
+Together with Apache Storm, RabbitMQ and Cassandra these components provide a fault-tolerant and highly scalable platform for programming distributed systems with F#.
 
 
 Installing
@@ -33,24 +33,24 @@ When we say "scale" what we really we mean:
 - the system as a whole is at least partially available,
 - performs the required function, 
 - has the predictable timeframe for handling the incoming messages,
-- can handle larger load if needed given more resources.
+- can handle a larger load if needed given more resources.
 
 #### Apache Storm
-Think of Apache Storm as distributed operating system designed for running programs that continiously process discreet events using a cluster of cheap machines.
+Think of Apache Storm as a distributed operating system designed for running programs that continiously process discrete events using a cluster of cheap machines.
 The core value of Apache Storm comes from the granular processing guarantees that are provided without touching the storage, therefore avoiding very high latency that usually comes with it.
 Storm will take care of distributing the program throughout the cluster, will monitor its performance and will redistribute the load if required.
 
 #### Apache Cassandra
 The persistence components implemented here don't have a dependency on [FsCassy](https://prolucid.github.io/FsCassy) and can be used with any database technology, but use of Cassandra is highly complementary.
-It features statically-typed API with consistently low latency in combination with tunable guarantees required for always-on systems. 
-At the same time, "materialized views" Cassandra encourages are easily maintained with FsShelter components.
+It features a statically-typed API with consistently low latency in combination with tunable guarantees required for always-on systems. 
+At the same time, the "materialized views" Cassandra encourages are easily maintained with FsShelter components.
 
 #### RabbitMQ
 RabbitMQ is a swiss knife of distributed messaging:
 
 - it talks in variety of protocols right out of the box,
-- it enables variety of messaging patterns, 
-- it runs on top of time-tested Erlang runtime,
+- it enables a variety of messaging patterns, 
+- it runs on top of the time-tested Erlang runtime,
 - and it supports clustering, mirroring and failover,
 - it runs on a laptop, an in-house datacenter or any cloud vendor your customers might prefer.
 
