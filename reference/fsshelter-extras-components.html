@@ -78,8 +78,8 @@
             ackerOfConsumer consumer
           </code>
           <div class="tip" id="1">
-            <strong>Signature:</strong> consumer:Consumer&lt;&#39;?7628&gt; -&gt; Acker<br />
-                          <strong>Type parameters:</strong> '?7628          </div>
+            <strong>Signature:</strong> consumer:Consumer&lt;&#39;?7627&gt; -&gt; Acker<br />
+                          <strong>Type parameters:</strong> '?7627          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/Prolucid/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L30-30" class="github-link">
@@ -99,8 +99,8 @@ consumer: event stream consumer</p>
             createAggregationBolt (...)
           </code>
           <div class="tip" id="2">
-            <strong>Signature:</strong> read:(&#39;?7648 -&gt; &#39;?7649 -&gt; &#39;?7650 -&gt; Async&lt;unit&gt;) -&gt; (using:((&#39;?7648 -&gt; Async&lt;unit&gt;) -&gt; &#39;?7651) * input:&#39;?7650 * out:&#39;?7649) -&gt; &#39;?7651<br />
-                          <strong>Type parameters:</strong> '?7648, '?7649, '?7650, '?7651          </div>
+            <strong>Signature:</strong> read:(&#39;?7647 -&gt; &#39;?7648 -&gt; &#39;?7649 -&gt; Async&lt;unit&gt;) -&gt; (using:((&#39;?7647 -&gt; Async&lt;unit&gt;) -&gt; &#39;?7650) * input:&#39;?7649 * out:&#39;?7648) -&gt; &#39;?7650<br />
+                          <strong>Type parameters:</strong> '?7647, '?7648, '?7649, '?7650          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/Prolucid/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L98-98" class="github-link">
@@ -123,8 +123,8 @@ transform: transform the input using a context.</p>
             createExchangeBolt (...)
           </code>
           <div class="tip" id="3">
-            <strong>Signature:</strong> ofTuple:(&#39;?7653 -&gt; &#39;?7654 * string) -&gt; (input:&#39;?7653 * publish:(string -&gt; Publisher&lt;&#39;?7654&gt;)) -&gt; Async&lt;unit&gt;<br />
-                          <strong>Type parameters:</strong> '?7653, '?7654          </div>
+            <strong>Signature:</strong> ofTuple:(&#39;?7652 -&gt; &#39;?7653 * string) -&gt; (input:&#39;?7652 * publish:(string -&gt; Publisher&lt;&#39;?7653&gt;)) -&gt; Async&lt;unit&gt;<br />
+                          <strong>Type parameters:</strong> '?7652, '?7653          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/Prolucid/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L108-108" class="github-link">
@@ -146,8 +146,8 @@ publish: function taking formatted topic and returning event stream publisher</p
             createJoinBolt toKey
           </code>
           <div class="tip" id="4">
-            <strong>Signature:</strong> toKey:(&#39;?7642 -&gt; &#39;?7643) -&gt; (&#39;?7642 -&gt; &#39;?7644 option -&gt; bool * &#39;?7645) -&gt; (&#39;?7643 -&gt; &#39;?7642 -&gt; &#39;?7645 -&gt; &#39;?7646) -&gt; &#39;?7642 * (&#39;?7646 -&gt; unit) -&gt; Async&lt;unit&gt;<br />
-                          <strong>Type parameters:</strong> '?7642, '?7643, '?7644, '?7645, '?7646          </div>
+            <strong>Signature:</strong> toKey:(&#39;?7641 -&gt; &#39;?7642) -&gt; (&#39;?7641 -&gt; &#39;?7643 option -&gt; bool * &#39;?7644) -&gt; (&#39;?7642 -&gt; &#39;?7641 -&gt; &#39;?7644 -&gt; &#39;?7645) -&gt; &#39;?7641 * (&#39;?7645 -&gt; unit) -&gt; Async&lt;unit&gt;<br />
+                          <strong>Type parameters:</strong> '?7641, '?7642, '?7643, '?7644, '?7645          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/Prolucid/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L91-91" class="github-link">
@@ -169,8 +169,8 @@ aggregate: join new tuple to available tuples and return the (complete,result).<
             createJoinBoltWith (...)
           </code>
           <div class="tip" id="5">
-            <strong>Signature:</strong> (ttl:TimeSpan * numberOfAgents:int) -&gt; toKey:(&#39;?7636 -&gt; &#39;?7637) -&gt; aggregate:(&#39;?7636 -&gt; &#39;?7638 option -&gt; bool * &#39;?7639) -&gt; toOutput:(&#39;?7637 -&gt; &#39;?7636 -&gt; &#39;?7639 -&gt; &#39;?7640) -&gt; &#39;?7636 * (&#39;?7640 -&gt; unit) -&gt; Async&lt;unit&gt;<br />
-                          <strong>Type parameters:</strong> '?7636, '?7637, '?7638, '?7639, '?7640          </div>
+            <strong>Signature:</strong> (ttl:TimeSpan * numberOfAgents:int) -&gt; toKey:(&#39;?7635 -&gt; &#39;?7636) -&gt; aggregate:(&#39;?7635 -&gt; &#39;?7637 option -&gt; bool * &#39;?7638) -&gt; toOutput:(&#39;?7636 -&gt; &#39;?7635 -&gt; &#39;?7638 -&gt; &#39;?7639) -&gt; &#39;?7635 * (&#39;?7639 -&gt; unit) -&gt; Async&lt;unit&gt;<br />
+                          <strong>Type parameters:</strong> '?7635, '?7636, '?7637, '?7638, '?7639          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/Prolucid/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L57-57" class="github-link">
@@ -195,8 +195,8 @@ input: incoming tuple.</p>
             createNotifierBolt (...)
           </code>
           <div class="tip" id="6">
-            <strong>Signature:</strong> ofTuple:(&#39;?7633 -&gt; &#39;?7634) -&gt; (input:&#39;?7633 * publish:Publisher&lt;&#39;?7634&gt;) -&gt; Async&lt;unit&gt;<br />
-                          <strong>Type parameters:</strong> '?7633, '?7634          </div>
+            <strong>Signature:</strong> ofTuple:(&#39;?7632 -&gt; &#39;?7633) -&gt; (input:&#39;?7632 * publish:Publisher&lt;&#39;?7633&gt;) -&gt; Async&lt;unit&gt;<br />
+                          <strong>Type parameters:</strong> '?7632, '?7633          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/Prolucid/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L45-45" class="github-link">
@@ -217,8 +217,8 @@ publisher: event stream publisher</p>
             createPersistBolt persist (using, input)
           </code>
           <div class="tip" id="7">
-            <strong>Signature:</strong> persist:(&#39;?7617 -&gt; &#39;?7618 -&gt; Async&lt;&#39;?7619&gt;) -&gt; (using:((&#39;?7617 -&gt; Async&lt;&#39;?7619&gt;) -&gt; &#39;?7620) * input:&#39;?7618) -&gt; &#39;?7620<br />
-                          <strong>Type parameters:</strong> '?7617, '?7618, '?7619, '?7620          </div>
+            <strong>Signature:</strong> persist:(&#39;?7616 -&gt; &#39;?7617 -&gt; Async&lt;&#39;?7618&gt;) -&gt; (using:((&#39;?7616 -&gt; Async&lt;&#39;?7618&gt;) -&gt; &#39;?7619) * input:&#39;?7617) -&gt; &#39;?7619<br />
+                          <strong>Type parameters:</strong> '?7616, '?7617, '?7618, '?7619          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/Prolucid/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L13-13" class="github-link">
@@ -240,8 +240,8 @@ persist: persit the input using specified context.</p>
             createQueueSpout toTuple consumer
           </code>
           <div class="tip" id="8">
-            <strong>Signature:</strong> toTuple:(&#39;?7630 -&gt; &#39;?7631) -&gt; consumer:Consumer&lt;&#39;?7630&gt; -&gt; Async&lt;(string * &#39;?7631) option&gt;<br />
-                          <strong>Type parameters:</strong> '?7630, '?7631          </div>
+            <strong>Signature:</strong> toTuple:(&#39;?7629 -&gt; &#39;?7630) -&gt; consumer:Consumer&lt;&#39;?7629&gt; -&gt; Async&lt;(string * &#39;?7630) option&gt;<br />
+                          <strong>Type parameters:</strong> '?7629, '?7630          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/Prolucid/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L36-36" class="github-link">
@@ -261,8 +261,8 @@ consumer: event stream consumer</p>
             createTransformBolt (...)
           </code>
           <div class="tip" id="9">
-            <strong>Signature:</strong> transform:(&#39;?7622 -&gt; &#39;?7623 -&gt; Async&lt;&#39;?7624&gt;) -&gt; (using:((&#39;?7622 -&gt; Async&lt;unit&gt;) -&gt; &#39;?7626) * input:&#39;?7623 * out:(&#39;?7625 -&gt; unit)) -&gt; &#39;?7626<br />
-                          <strong>Type parameters:</strong> '?7622, '?7623, '?7624, '?7625, '?7626          </div>
+            <strong>Signature:</strong> transform:(&#39;?7621 -&gt; &#39;?7622 -&gt; Async&lt;&#39;?7623&gt;) -&gt; (using:((&#39;?7621 -&gt; Async&lt;unit&gt;) -&gt; &#39;?7625) * input:&#39;?7622 * out:(&#39;?7624 -&gt; unit)) -&gt; &#39;?7625<br />
+                          <strong>Type parameters:</strong> '?7621, '?7622, '?7623, '?7624, '?7625          </div>
         </td>
         <td class="xmldoc">
             <a href="https://github.com/Prolucid/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L21-21" class="github-link">
