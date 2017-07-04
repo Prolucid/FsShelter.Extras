@@ -18,7 +18,7 @@ let defaultIncludes depPath =
             
 /// Submit topology with specified includes, process host, arguments and configuration
 /// to a Nimbus service running at the specified address and port
-let submit (topology:Topology.Topology<'t>) includes exePath mkCmdArgs conf address port = 
+let submit (topology:Topology.Topology<'t>) includes exePath mkCmdArgs address port = 
     let nimbusTopology = topology |> ThriftModel.ofTopology (mkCmdArgs exePath)
     Nimbus.withClient address port
         (fun client ->
@@ -27,5 +27,5 @@ let submit (topology:Topology.Topology<'t>) includes exePath mkCmdArgs conf addr
                 Package.makeJar (Includes.aggregate includes) binDir (Path.Combine(binDir, topology.Name) + ".jar")
                 |> Nimbus.uploadJar client
             nimbusTopology
-            |> Nimbus.submit client (Some conf) uploadedFile)
+            |> Nimbus.submit client topology.Conf uploadedFile)
 

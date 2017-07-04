@@ -16,7 +16,7 @@ NUGET
     FSharp.Core (4.1.17) - redirects: force
       System.ValueTuple (>= 4.3)
     FsPickler (3.2)
-    FsShelter (0.0.11)
+    FsShelter (0.1)
       FsPickler (>= 2.0)
       Google.Protobuf (>= 3.0.0-beta2)
       Newtonsoft.Json (>= 8.0.2)
