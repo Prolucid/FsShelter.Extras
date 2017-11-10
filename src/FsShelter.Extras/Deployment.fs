@@ -14,7 +14,7 @@ let contentIncludes depPath =
 /// and Protoshell as Storm-side serializer (presumed installed via Paket)
 let defaultIncludes depPath =
     [ Includes.buildOutput Includes.defaultExtensions
-      Includes.jarContents <| Path.Combine (depPath, "github.com/protoshell-1.0.1-SNAPSHOT-jar-with-dependencies.jar")] 
+      Includes.jarContents <| Path.Combine (depPath, "github.com/protoshell-1.1.0-SNAPSHOT-jar-with-dependencies.jar")] 
             
 /// Submit topology with specified includes, process host, arguments and configuration
 /// to a Nimbus service running at the specified address and port

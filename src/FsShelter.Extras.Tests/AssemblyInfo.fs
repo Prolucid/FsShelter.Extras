@@ -5,8 +5,8 @@ open System.Reflection
 [<assembly: AssemblyTitleAttribute("FsShelter.Extras.Tests")>]
 [<assembly: AssemblyProductAttribute("FsShelter.Extras")>]
 [<assembly: AssemblyDescriptionAttribute("FsShelter components for building event-processing topologies")>]
-[<assembly: AssemblyVersionAttribute("0.1.0")>]
-[<assembly: AssemblyFileVersionAttribute("0.1.0")>]
+[<assembly: AssemblyVersionAttribute("0.1.1")>]
+[<assembly: AssemblyFileVersionAttribute("0.1.1")>]
 [<assembly: AssemblyConfigurationAttribute("Release")>]
 do ()
 
@@ -14,6 +14,6 @@ module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyTitle = "FsShelter.Extras.Tests"
     let [<Literal>] AssemblyProduct = "FsShelter.Extras"
     let [<Literal>] AssemblyDescription = "FsShelter components for building event-processing topologies"
-    let [<Literal>] AssemblyVersion = "0.1.0"
-    let [<Literal>] AssemblyFileVersion = "0.1.0"
+    let [<Literal>] AssemblyVersion = "0.1.1"
+    let [<Literal>] AssemblyFileVersion = "0.1.1"
     let [<Literal>] AssemblyConfiguration = "Release"
