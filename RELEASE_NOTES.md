@@ -1,3 +1,6 @@
+#### 1.0.0-beta-1 - Dec 2017
+* netstandard2.0 release
+
 #### 0.1.1 - May 2017
 * protoshell reference update
 

@@ -1,3 +1,4 @@
+FSharp.Core
 FsShelter
 FsBunny
 RabbitMQ.Client
@@ -5,3 +6,4 @@ google.protobuf
 FsPickler
 Newtonsoft.Json
 Fable.JsonConverter
+Microsoft.Extensions.Caching.Memory

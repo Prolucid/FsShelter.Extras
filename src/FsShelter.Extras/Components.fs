@@ -4,7 +4,7 @@ module FsShelter.Extras.Components
 open System
 open FsShelter.DSL
 open FsBunny
-open System.Runtime.Caching
+open Microsoft.Extensions.Caching.Memory
 
 /// Persist the input in the given context.
 /// input: incoming tuple.
@@ -56,7 +56,7 @@ let createNotifierBolt ofTuple (input, publish:Publisher<_>) =
 /// input: incoming tuple.
 let createJoinBoltWith (ttl:TimeSpan, numberOfAgents:int) toKey aggregate toOutput = 
     let mkCacheAgent x = 
-        let cache = new MemoryCache(string x)
+        let cache = new MemoryCache(MemoryCacheOptions())
         MailboxProcessor.Start(fun inbox -> 
             async { 
                 while true do
@@ -67,7 +67,7 @@ let createJoinBoltWith (ttl:TimeSpan, numberOfAgents:int) toKey aggregate toOutp
                         if complete then 
                             cache.Remove key |> ignore
                         else 
-                            cache.Set(key, box newValue, DateTimeOffset.Now.Add ttl)
+                            cache.Set(key, box newValue, DateTimeOffset.Now.Add ttl) |> ignore
                         Choice1Of2(complete,newValue) |> rc.Reply
                     with ex -> Choice2Of2 ex |> rc.Reply
             })

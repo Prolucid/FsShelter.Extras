@@ -3,6 +3,7 @@ google.protobuf
 FsPickler
 Newtonsoft.Json
 Fable.JsonConverter
+FSharp.Core
 
 group Tests
 Nunit

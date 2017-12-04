@@ -25,10 +25,6 @@ let project = "FsShelter.Extras"
 // (used as description in AssemblyInfo and as a short summary for NuGet package)
 let summary = "FsShelter components for building event-processing topologies"
 
-// Longer description of the project
-// (used as a description for NuGet package; line breaks are automatically cleaned up)
-let description = "FsShelter components for building event-processing topologies"
-
 // List of author names (for NuGet package)
 let authors = [ "Prolucid" ]
 
@@ -41,19 +37,16 @@ let solutionFile  = "src/FsShelter.Extras.sln"
 // Default target configuration
 let configuration = "Release"
 
-// Pattern specifying assemblies to be tested using NUnit
-let testAssemblies = "build_output/Tests/*.Tests.dll"
-
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
 let gitOwner = "Prolucid"
-let gitHome = sprintf "%s/%s" "https://github.com" gitOwner
+let gitHome = sprintf "https://github.com/%s" gitOwner
 
 // The name of the project on GitHub
 let gitName = "FsShelter.Extras"
 
 // The url for the raw files hosted
-let gitRaw = environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/Prolucid"
+let gitRaw = environVarOrDefault "gitRaw" (sprintf "https://raw.githubusercontent.com/%s/%s" gitOwner gitName)
 
 // --------------------------------------------------------------------------------------
 // END TODO: The rest of the file includes standard build steps
@@ -62,74 +55,59 @@ let gitRaw = environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/Pro
 // Read additional information from the release notes document
 let release = LoadReleaseNotes "RELEASE_NOTES.md"
 
-// Helper active pattern for project types
-let (|Fsproj|Csproj|) (projFileName:string) =
-    match projFileName with
-    | f when f.EndsWith("fsproj") -> Fsproj
-    | f when f.EndsWith("csproj") -> Csproj
-    | _                           -> failwith (sprintf "Project file %s not supported. Unknown project type." projFileName)
+let assemblyInfo =
+    [ "Description",summary
+      "Version", (string release.SemVer)
+      "Authors", gitOwner
+      "PackageProjectUrl", gitHome
+      "RepositoryUrl", gitHome
+      "PackageIconUrl", gitRaw + "/master/docs/files/img/logo.png"
+      "PackageLicenseUrl", gitRaw + "/master/docs/files/LICENSE.md" ]
 
-// Generate assembly info files with the right version & up-to-date information
-Target "AssemblyInfo" (fun _ ->
-    let getAssemblyInfoAttributes projectName =
-        [ Attribute.Title (projectName)
-          Attribute.Product project
-          Attribute.Description summary
-          Attribute.Version release.AssemblyVersion
-          Attribute.FileVersion release.AssemblyVersion
-          Attribute.Configuration configuration ]
+let projects = !! "src/**/*.??proj"
 
-    let getProjectDetails projectPath =
-        let projectName = System.IO.Path.GetFileNameWithoutExtension(projectPath)
-        ( projectPath,
-          projectName,
-          System.IO.Path.GetDirectoryName(projectPath),
-          (getAssemblyInfoAttributes projectName)
-        )
+let dotnetcliVersion = "2.0.0"
 
-    !! "src/**/*.??proj"
-    |> Seq.map getProjectDetails
-    |> Seq.iter (fun (projFileName, projectName, folderName, attributes) ->
-        match projFileName with
-        | Fsproj -> CreateFSharpAssemblyInfo (folderName </> "AssemblyInfo.fs") attributes
-        | Csproj -> CreateFSharpAssemblyInfo (folderName </> "AssemblyInfo.cs") attributes
-        )
+let mutable dotnetExePath = "dotnet"
+
+let runDotnet workingDir =
+    DotNetCli.RunCommand (fun p -> { p with ToolPath = dotnetExePath
+                                            WorkingDir = workingDir } )
+
+Target "InstallDotNetCore" (fun _ ->
+   dotnetExePath <- DotNetCli.InstallDotNetSDK dotnetcliVersion
 )
-
-// --------------------------------------------------------------------------------------
-// Clean build results
-
-let vsProjProps = 
-#if MONO
-    [ ("DefineConstants","MONO"); ("Configuration", configuration) ]
-#else
-    [ ("Configuration", configuration); ("Platform", "Any CPU") ]
-#endif
 
 Target "Clean" (fun _ ->
-    !! solutionFile |> MSBuildReleaseExt "" vsProjProps "Clean" |> ignore
-    CleanDirs ["build_output"; "temp"; "docs/output"]
+    let dirs = { BaseDirectory = Path.GetFullPath "."
+                 Includes = projects
+                            |> Seq.map Path.GetDirectoryName
+                            |> Seq.collect (fun n -> [Path.Combine(n,"bin"); Path.Combine(n,"obj")] )
+                            |> List.ofSeq
+                 Excludes = [] }
+                    
+    dirs
+    ++ "docs/output"
+    |> Seq.iter (CleanDir)
 )
 
-// --------------------------------------------------------------------------------------
-// Build library & test project
-
-Target "Incremental" (fun _ ->
-    !! solutionFile
-    |> MSBuild "" "Build" vsProjProps
-    |> ignore
+Target "Restore" (fun _ ->
+    projects
+    |> Seq.iter ((sprintf "restore %s") >> runDotnet ".")
 )
 
 Target "Build" (fun _ ->
     !! solutionFile
-    |> MSBuildReleaseExt "" vsProjProps "Rebuild"
+    |> MSBuildReleaseExt "" assemblyInfo "Build"
     |> ignore
 )
 
+
 // --------------------------------------------------------------------------------------
 // Run the unit tests using test runner
+let testAssemblies = "src/FsShelter.Extras.Tests/bin/**/*.Tests.dll"
 
-Target "RunTestsInteractive" (fun _ ->
+Target "TestsInteractive" (fun _ ->
     !! testAssemblies
     |> NUnit (fun p ->
         { p with
@@ -139,7 +117,7 @@ Target "RunTestsInteractive" (fun _ ->
             OutputFile = "build_output/Tests/TestResults.xml" })
 )
 
-Target "RunTests" (fun _ ->
+Target "Tests" (fun _ ->
     !! testAssemblies
     |> NUnit (fun p ->
         { p with
@@ -149,39 +127,17 @@ Target "RunTests" (fun _ ->
             OutputFile = "build_output/Tests/TestResults.xml" })
 )
 
-#if MONO
-#else
-// --------------------------------------------------------------------------------------
-// SourceLink allows Source Indexing on the PDB generated by the compiler, this allows
-// the ability to step through the source code of external libraries http://ctaggart.github.io/SourceLink/
-
-Target "SourceLink" (fun _ ->
-    let baseUrl = sprintf "%s/%s/{0}/%%var2%%" gitRaw project
-    !! "src/**/*.??proj"
-    -- "src/**/*.shproj"
-    |> Seq.iter (fun projFile ->
-        let proj = VsProj.LoadRelease projFile
-        SourceLink.Index proj.CompilesNotLinked proj.OutputFilePdb __SOURCE_DIRECTORY__ baseUrl
-    )
-)
-
-#endif
-
 // --------------------------------------------------------------------------------------
 // Build a NuGet package
 
-Target "NuGet" (fun _ ->
-    Paket.Pack(fun p ->
-        { p with
-            OutputPath = "build_output"
-            Version = release.NugetVersion
-            ReleaseNotes = toLines release.Notes})
+Target "Package" (fun _ ->
+    runDotnet 
+        "src/FsShelter.Extras"
+        (assemblyInfo |> Seq.fold (fun s (p,v) -> s + (sprintf " /p:%s=\"%s\"" p v)) "pack -c Release --no-build")
 )
 
 Target "PublishNuget" (fun _ ->
-    Paket.Push(fun p ->
-        { p with
-            WorkingDir = "build_output" })
+     runDotnet "src/FsShelter.Extras" (sprintf "nuget push bin/Release/FsShelter.Extras.%s.nupkg -s nuget.org -k %s" release.NugetVersion (environVar "nugetkey"))
 )
 
 
@@ -368,35 +324,24 @@ Target "BuildPackage" DoNothing
 
 Target "All" DoNothing
 
-"AssemblyInfo"
-  ==> "Build"
-  ==> "RunTests"
+"All"
+  <== ["Clean"; "Restore"; "Build"; "Tests"; "Package"; "GenerateReferenceDocs"; "GenerateDocs"]
+
+"Build"
+  ==> "Tests"
+
+"Build"
+  ==> "GenerateHelp"
   ==> "GenerateReferenceDocs"
   ==> "GenerateDocs"
-#if MONO
-#else
-  =?> ("SourceLink", Pdbstr.tryFind().IsSome )
-#endif
-  ==> "NuGet"
-  ==> "BuildPackage"
-  ==> "All"
-  =?> ("ReleaseDocs",isLocalBuild)
+
+"Build"
+  ==> "GenerateHelpDebug"
 
 "GenerateHelp"
-  ==> "GenerateReferenceDocs"
-  ==> "GenerateDocs"
-
-"GenerateHelpDebug"
   ==> "KeepRunning"
-
-"Clean"
-  ==> "Release"
-
-"BuildPackage"
-  ==> "PublishNuget"
-  ==> "Release"
-
-"ReleaseDocs"
-  ==> "Release"
+    
+"Release"
+  <== ["All"; "PublishNuget"; "ReleaseDocs"]
 
 RunTargetOrDefault "All"
