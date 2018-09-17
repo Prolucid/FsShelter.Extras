@@ -2,14 +2,15 @@ redirects: on
 framework: netstandard2.0
 
 group Main
+    source https://www.myget.org/F/prolucid/api/v2
     source https://www.nuget.org/api/v2
     storage: none
 
     nuget FSharp.Core redirects: force
-    nuget FsShelter 1.0.0-beta-2
-    nuget FsBunny prerelease
+    nuget FsShelter
+    nuget FsBunny
     nuget FsCassy 
-nuget Microsoft.Extensions.Caching.Memory
+    nuget Microsoft.Extensions.Caching.Memory
     nuget RabbitMQ.Client
     nuget google.protobuf
     nuget FsPickler

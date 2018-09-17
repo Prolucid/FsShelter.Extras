@@ -1,3 +1,7 @@
+#### 2.0.0 - Aug 2018
+* FsShelter2 support
+* Module-scoped component factories
+
 #### 1.0.0-beta-1 - Dec 2017
 * netstandard2.0 release
 

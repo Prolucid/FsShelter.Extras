@@ -14,9 +14,9 @@ let ``Joins``() =
         | _ -> false,input
     let toOutput _ _ v = v
 
-    let join = createJoinBolt toKey agg toOutput 
+    let join = Bolt.mkJoiner toKey agg toOutput 
 
-    join (0x1,(fun r -> res <- r)) |> Async.RunSynchronously
-    join (0x2,(fun r -> res <- r)) |> Async.RunSynchronously
+    join (0x1,(fun r -> res <- r))
+    join (0x2,(fun r -> res <- r))
 
     res =! 3
