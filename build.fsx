@@ -66,7 +66,7 @@ let assemblyInfo =
 
 let projects = !! "src/**/*.??proj"
 
-let dotnetcliVersion = "2.0.0"
+let dotnetcliVersion = "2.1.402"
 
 let mutable dotnetExePath = "dotnet"
 
@@ -113,8 +113,7 @@ Target "TestsInteractive" (fun _ ->
         { p with
             DisableShadowCopy = true
             IncludeCategory = "interactive"
-            TimeOut = TimeSpan.FromMinutes 20.
-            OutputFile = "build_output/Tests/TestResults.xml" })
+            TimeOut = TimeSpan.FromMinutes 20. })
 )
 
 Target "Tests" (fun _ ->
@@ -123,8 +122,7 @@ Target "Tests" (fun _ ->
         { p with
             DisableShadowCopy = true
             ExcludeCategory = "interactive"
-            TimeOut = TimeSpan.FromMinutes 20.
-            OutputFile = "build_output/Tests/TestResults.xml" })
+            TimeOut = TimeSpan.FromMinutes 20. })
 )
 
 // --------------------------------------------------------------------------------------
@@ -234,7 +232,7 @@ Target "GenerateDocs" DoNothing
 
 let createIndexFsx lang =
     let content = """(*** hide ***)
-#I "../../../build_output"
+#I "../../../src/FsShelter.Extras/bin/Release/netstandard2.0"
 
 (**
 FsShelter.Extras
