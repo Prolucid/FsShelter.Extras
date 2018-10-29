@@ -6,7 +6,7 @@
 (**
 FsShelter.Extras
 ======================
-The opinionated library of common components for building event-processing topologies with [FsShelter](https://prolucid.github.io/FsShelter) and [FsBunny](https://prolucid.github.io/FsBunny).
+The opinionated library of common components for building event-processing topologies with [FsShelter](https://FsStorm.github.io/FsShelter) and [FsBunny](https://FsStorm.github.io/FsBunny).
 Together with Apache Storm, RabbitMQ and Cassandra these components provide a fault-tolerant and highly scalable platform for programming distributed systems with F#.
 
 
@@ -41,7 +41,7 @@ The core value of Apache Storm comes from the granular processing guarantees tha
 Storm will take care of distributing the program throughout the cluster, will monitor its performance and will redistribute the load if required.
 
 #### Apache Cassandra
-The persistence components implemented here don't have a dependency on [FsCassy](https://prolucid.github.io/FsCassy) and can be used with any database technology, but use of Cassandra is highly complementary.
+The persistence components implemented here don't have a dependency on [FsCassy](https://FsStorm.github.io/FsCassy) and can be used with any database technology, but use of Cassandra is highly complementary.
 It features a statically-typed API with consistently low latency in combination with tunable guarantees required for always-on systems. 
 At the same time, the "materialized views" Cassandra encourages are easily maintained with FsShelter components.
 
@@ -54,7 +54,7 @@ RabbitMQ is a swiss knife of distributed messaging:
 - and it supports clustering, mirroring and failover,
 - it runs on a laptop, an in-house datacenter or any cloud vendor your customers might prefer.
 
-[FsBunny](https://prolucid.github.io/FsBunny) implements the publisher and consumer API we use for our messaging components.
+[FsBunny](https://et1975.github.io/FsBunny) implements the publisher and consumer API we use for our messaging components.
 
  
 Contributing and copyright
@@ -66,12 +66,12 @@ The library is available under Apache license, which allows modification and
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: https://github.com/Prolucid/FsShelter.Extras/tree/master/docs/content
-  [gh]: https://github.com/Prolucid/FsShelter.Extras
-  [issues]: https://github.com/Prolucid/FsShelter.Extras/issues
-  [readme]: https://github.com/Prolucid/FsShelter.Extras/blob/master/README.md
-  [license]: https://github.com/Prolucid/FsShelter.Extras/blob/master/LICENSE.md
+  [content]: https://github.com/FsStorm/FsShelter.Extras/tree/master/docs/content
+  [gh]: https://github.com/FsStorm/FsShelter.Extras
+  [issues]: https://github.com/FsStorm/FsShelter.Extras/issues
+  [readme]: https://github.com/FsStorm/FsShelter.Extras/blob/master/README.md
+  [license]: https://github.com/FsStorm/FsShelter.Extras/blob/master/LICENSE.md
 
 
-Copyright 2017 Prolucid Technologies Inc
+Copyright 2017 FsShelter contributors
 *)

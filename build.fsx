@@ -26,7 +26,7 @@ let project = "FsShelter.Extras"
 let summary = "FsShelter components for building event-processing topologies"
 
 // List of author names (for NuGet package)
-let authors = [ "Prolucid" ]
+let authors = [ "FsStorm" ]
 
 // Tags for your project (for NuGet package)
 let tags = "F# RabbitMQ Storm FsShelter"
@@ -39,7 +39,7 @@ let configuration = "Release"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
-let gitOwner = "Prolucid"
+let gitOwner = "FsStorm"
 let gitHome = sprintf "https://github.com/%s" gitOwner
 
 // The name of the project on GitHub

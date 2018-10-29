@@ -11,14 +11,14 @@
 // (This is the original behaviour of ProjectScaffold prior to multi project support)
 let referenceBinaries = ["FsShelter.Extras.dll"]
 // Web site location for the generated documentation
-let website = "https://prolucid.github.io/FsShelter.Extras"
+let website = "https://FsStorm.github.io/FsShelter.Extras"
 
-let githubLink = "https://github.com/Prolucid/FsShelter.Extras"
+let githubLink = "https://github.com/FsStorm/FsShelter.Extras"
 
 // Specify more information about your project
 let info =
   [ "project-name", "FsShelter.Extras"
-    "project-author", "Prolucid"
+    "project-author", "FsStorm"
     "project-summary", "Common component constructors for FsShelter"
     "project-github", githubLink
     "project-nuget", "http://nuget.org/packages/FsShelter.Extras" ]

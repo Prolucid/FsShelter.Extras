@@ -2,7 +2,7 @@ redirects: on
 framework: netstandard2.0
 
 group Main
-    source https://www.myget.org/F/prolucid/api/v2
+    source https://www.myget.org/F/FsStorm/api/v2
     source https://www.nuget.org/api/v2
     storage: none
 
