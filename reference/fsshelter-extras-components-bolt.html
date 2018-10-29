@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Bolt - FsShelter.Extras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="FsStorm"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="https://FsStorm.github.io/FsShelter.Extras/content/style.css" />
+    <script type="text/javascript" src="https://FsStorm.github.io/FsShelter.Extras/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="https://FsStorm.github.io/FsShelter">FsShelter</a></li>
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/FsStorm/FsShelter.Extras">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="https://FsStorm.github.io/FsShelter.Extras/index.html">FsShelter.Extras</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Bolt</h1>
+<p>
+  <span>Namespace: FsShelter.Extras</span><br />
+  <span>Parent Module: <a href="fsshelter-extras-components.html">Components</a></span>
+</p>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+            mkAggregator read (using, input, out)
+          </code>
+          <div class="tip" id="11">
+            <strong>Signature:</strong> read:(&#39;?7728 -&gt; &#39;?7729 -&gt; &#39;?7730 -&gt; Async&lt;&#39;?7731&gt;) -&gt; (using:((&#39;?7728 -&gt; &#39;?7731) -&gt; &#39;?7732) * input:&#39;?7730 * out:&#39;?7729) -&gt; &#39;?7732<br />
+                          <strong>Type parameters:</strong> '?7728, '?7729, '?7730, '?7731, '?7732          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/FsStorm/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L104-104" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Aggregate inputs and/or emit at any time.
+input: incoming tuple.
+out: do something with the output.
+using: provide context for the select.
+transform: transform the input using a context.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
+            mkJoiner toKey
+          </code>
+          <div class="tip" id="12">
+            <strong>Signature:</strong> toKey:(&#39;?7722 -&gt; &#39;?7723) -&gt; (&#39;?7722 -&gt; &#39;?7724 option -&gt; bool * &#39;?7725) -&gt; (&#39;?7723 -&gt; &#39;?7722 -&gt; &#39;?7725 -&gt; &#39;?7726) -&gt; &#39;?7722 * (&#39;?7726 -&gt; unit) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?7722, '?7723, '?7724, '?7725, '?7726          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/FsStorm/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L97-97" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Join multiple streams into a single output.
+toKey: select a key from the input tuple.
+toOutput: select output tuple.
+aggregate: join new tuple to available tuples and return the (complete,result).</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
+            mkJoinerWith (...)
+          </code>
+          <div class="tip" id="13">
+            <strong>Signature:</strong> (ttl:(type) * numberOfAgents:int) -&gt; toKey:(&#39;?7716 -&gt; &#39;?7717) -&gt; aggregate:(&#39;?7716 -&gt; &#39;?7718 option -&gt; bool * &#39;?7719) -&gt; toOutput:(&#39;?7717 -&gt; &#39;?7716 -&gt; &#39;?7719 -&gt; &#39;?7720) -&gt; &#39;?7716 * (&#39;?7720 -&gt; unit) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?7716, '?7717, '?7718, '?7719, '?7720          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/FsStorm/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L65-65" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Join multiple streams into a single output.
+toKey: select a key from the input tuple (has to privide meaningful conversion to string!).
+toOutput: select output tuple.
+aggregate: join new tuple to available tuples and return the (complete,result).
+ttl: time to live for cached data
+numberOfAgents: parallelism for mailbox processor doing the join
+input: incoming tuple.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
+            mkNotifier ofTuple (input, publish)
+          </code>
+          <div class="tip" id="14">
+            <strong>Signature:</strong> ofTuple:(&#39;?7710 -&gt; &#39;?7711) -&gt; (input:&#39;?7710 * publish:(type)) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?7710, '?7711          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/FsStorm/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L47-47" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Create a simple publisher bolt that always publishes to the same topic.
+ofTuple: conversion function
+publisher: event stream publisher</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+            mkPersister persist (using, input)
+          </code>
+          <div class="tip" id="15">
+            <strong>Signature:</strong> persist:(&#39;?7699 -&gt; &#39;?7700 -&gt; Async&lt;&#39;?7701&gt;) -&gt; (using:((&#39;?7699 -&gt; Async&lt;&#39;?7701&gt;) -&gt; &#39;?7702) * input:&#39;?7700) -&gt; &#39;?7702<br />
+                          <strong>Type parameters:</strong> '?7699, '?7700, '?7701, '?7702          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/FsStorm/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L29-29" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Persist the input in the given context.
+input: incoming tuple.
+using: provides call context for update.
+persist: persit the input using specified context.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+            mkSignalAggregator signals
+          </code>
+          <div class="tip" id="16">
+            <strong>Signature:</strong> signals:bigint list -&gt; &#39;t -&gt; bigint list option -&gt; bool * bigint list<br />
+                          <strong>Type parameters:</strong> 't          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/FsStorm/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L112-112" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Join aggregator for signals</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
+            mkTopicNotifier (...)
+          </code>
+          <div class="tip" id="17">
+            <strong>Signature:</strong> ofTuple:(&#39;?7713 -&gt; &#39;?7714 * string) -&gt; (input:&#39;?7713 * mkPublish:(string -&gt; (type))) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?7713, '?7714          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/FsStorm/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L54-54" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Create a publisher bolt that formats a topic at runtime
+ofTuple: conversion function for message and topic format parameter
+input: incoming tuple
+mkPublish: function taking formatted topic and returning event stream publisher</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
+            mkTransformer (...)
+          </code>
+          <div class="tip" id="18">
+            <strong>Signature:</strong> transform:(&#39;?7704 -&gt; &#39;?7705 -&gt; Async&lt;&#39;?7706&gt;) -&gt; (using:((&#39;?7704 -&gt; Async&lt;unit&gt;) -&gt; &#39;?7708) * input:&#39;?7705 * out:(&#39;?7707 -&gt; unit)) -&gt; &#39;?7708<br />
+                          <strong>Type parameters:</strong> '?7704, '?7705, '?7706, '?7707, '?7708          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/FsStorm/FsShelter.Extras/tree/master/src/FsShelter.Extras/Components.fs#L37-37" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Transform input into a seq and emit.
+input: incoming tuple.
+out: do something with the output.
+using: provide context for the select.
+transform: transform the input using a context.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="https://FsStorm.github.io/FsShelter.Extras/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FsShelter.Extras</li>
+            <li><a href="https://FsStorm.github.io/FsShelter.Extras/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FsShelter.Extras">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/FsStorm/FsShelter.Extras">Source Code on GitHub</a></li>
+            <li><a href="https://FsStorm.github.io/FsShelter.Extras/license.html">License</a></li>
+            <li><a href="https://FsStorm.github.io/FsShelter.Extras/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="https://FsStorm.github.io/FsShelter.Extras/overview.html">Overview</a></li>
+            <li><a href="https://FsStorm.github.io/FsShelter.Extras/bootstrap.html">Bootstrapping the dependencies</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="https://FsStorm.github.io/FsShelter.Extras/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
